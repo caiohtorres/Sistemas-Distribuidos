@@ -26,12 +26,15 @@ Esta visão descreve a arquitetura do sistema distribuído antes da aplicação 
 
 ## Pontos de Atenção(Possíveis Vulnerabilidades)
 
+> Classificação STRIDE
 > * Spoofing(Falsificação de identidade)
 > * Tampering(Manipulação de dados)
 > * Repudiation(Negação de serviço)
 > * Information Disclosure(Divulgação de Informação)
 > * Denial of Service(Falsificação de identidade)
 > * Elevation Privilege(Elevação de privilegio)
+
+Possiveis Vulnerabilidades
 
 * Ausencia de autenticação para o envio de materiais e notas para o Agente 1(Spoofing/ Tampering /Denial of Service)
 * Utilização de HTTP simples(Tampering/Information Disclosure)
