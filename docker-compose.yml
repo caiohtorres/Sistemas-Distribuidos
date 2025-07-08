@@ -1,0 +1,57 @@
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - ia_aluno
+      - ia_professor
+    volumes:
+      - ./backend:/app
+
+  ia_aluno:
+    build: ./ia_aluno
+    container_name: ia_aluno
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./ia_aluno:/app
+    depends_on:
+      - llama_aluno
+
+  llama_aluno:
+    image: ollama/ollama
+    container_name: llama_aluno
+    ports:
+      - "11435:11434"  # Evita conflito com outro Ollama
+    volumes:
+      - llama_aluno_data:/root/.ollama
+    restart: unless-stopped
+    entrypoint: /bin/sh
+    command: -c "ollama serve & sleep 5 && ollama pull phi && ollama run phi && wait"
+
+  ia_professor:
+    build: ./ia_professor
+    container_name: ia_professor
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./ia_professor:/app
+    depends_on:
+      - llama_professor
+
+  llama_professor:
+    image: ollama/ollama
+    container_name: llama_professor
+    ports:
+      - "11436:11434"
+    volumes:
+      - llama_professor_data:/root/.ollama
+    restart: unless-stopped
+    entrypoint: /bin/sh
+    command: -c "ollama serve & sleep 5 && ollama pull phi && ollama run phi && wait"
+
+volumes:
+  llama_aluno_data:
+  llama_professor_data:

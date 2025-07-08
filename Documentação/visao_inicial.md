@@ -34,7 +34,7 @@ Esta visão descreve a arquitetura do sistema distribuído antes da aplicação 
 > * Elevation Privilege(Elevação de privilegio)
 
 * Ausencia de autenticação para o envio de materiais e notas para o Agente 1(Spoofing/ Tampering /Denial of Service)
-* Utilização de HTTP simples
+* Utilização de HTTP simples(Tampering/Information Disclosure)
 * Possibilidade de interceptação de Dados tanto no envio dos dados para o Agente 1, quanto no relatório retornado pelo agente 2(Informatio Disclousure)
 
 
